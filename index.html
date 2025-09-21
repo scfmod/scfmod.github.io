@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <title>scfmod.github.io</title>
+
+    <link rel="stylesheet" href="pico.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.35.0/tabler-icons.min.css">
+
+    <style>
+        .main {
+            padding: 2rem;
+        }
+
+        .header {
+            height: 240px;
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            column-gap: 1rem;
+
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("https://github.com/scfmod/FS25_TerraFarm/raw/main/docs/images/header.webp");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .header .ti {
+            font-size: 3rem;
+        }
+
+        .header .title-wrapper {
+            display: inline-block;
+        }
+
+        .header .sub-title {
+            font-size: 0.9rem;
+        }
+
+        .support {
+            font-size: 0.9rem;
+            padding-left: 2rem;
+        }
+
+        .section-title {
+            padding: 2rem 0;
+        }
+
+        .footer {
+            padding: 2rem 2rem 4rem 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <article class="header">
+        <i class="ti ti-brand-github"></i>
+        <div class="title-wrapper">
+            <div class="title"><a href="https://github.com/scfmod">scfmod</a></div>
+            <div class="sub-title">Developing tools and mods for the Farming Simulator series</div>
+        </div>
+    </article>
+
+    <div class="support">
+        If you want to support current and future development of mods: <a href="https://ko-fi.com/scfmod">Ko-fi</a>, <a
+            href="https://patreon.com/scfmod">Patreon</a>
+    </div>
+
+    <div class="main">
+        <repository-item name="FS25_TerraFarm" filename="FS25_0_TerraFarm.zip" discussions="true"></repository-item>
+        <repository-item name="FS25_TerraFarmMachines" filename="FS25_0_TerraFarmMachines.zip"
+            discussions="false"></repository-item>
+        <repository-item name="FS25_MaterialProcessor" filename="FS25_0_MaterialProcessor.zip"
+            discussions="true"></repository-item>
+        <repository-item name="FS25_PlaceableMaterialDischarge" filename="FS25_0_PlaceableMaterialDischarge.zip"
+            discussions="true"></repository-item>
+
+        <div class="section-title">Farming Simulator 22</div>
+
+        <repository-item name="FS22_TerraFarm" filename="FS22_0_TerraFarm.zip" discussions="true"></repository-item>
+        <repository-item name="FS22_TerraFarmMachines" filename="FS22_0_TerraFarmMachines.zip"
+            discussions="false"></repository-item>
+        <repository-item name="FS22_MaterialProcessor" filename="FS22_1_MaterialProcessor.zip"
+            discussions="true"></repository-item>
+    </div>
+
+    <div class="footer">
+        ... for more projects <a href="https://github.com/scfmod?tab=repositories">visit my GitHub</a>.
+    </div>
+</body>
+
+<script type="module">
+    import "./components/repository-release-data.js"
+    import "./components/repository-item.js"
+</script>
+
+</html>
