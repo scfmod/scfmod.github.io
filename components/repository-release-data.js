@@ -4,6 +4,24 @@ import { unsafeHTML } from 'https://cdn.jsdelivr.net/npm/lit-html@3.3.1/directiv
 import picoStylesheet from './../pico.min.css' with { type: 'css' }
 import { getReleaseData } from '../gh-api.js'
 
+const dateFormat = (value) => {
+    const date = new Date(value)
+    const minutes = Math.floor((Date.now() / 1000 - date.getTime() / 1000) / 60)
+    const hours = Math.floor(minutes / 60)
+    const days = Math.floor(hours / 24)
+
+    if (days > 30)
+        return date.toLocaleString()
+    else if (days > 0)
+        return html`${date.toLocaleString()} <span>(${days} days ago)</span>`
+    else if (hours > 0)
+        return html`${date.toLocaleString()} <span>(${hours} hours ago)</span>`
+    else if (minutes > 0)
+        return html`${date.toLocaleString()} <span>(${minutes} minutes ago)</span>`
+
+    return `${date.toLocaleString()} (just now)`
+}
+
 export class RepositoryReleaseData extends LitElement {
 
     static styles = [
@@ -28,7 +46,11 @@ export class RepositoryReleaseData extends LitElement {
         .release-table th {
             font-weight: bold;
         }
-
+        
+        .release-table span {
+            color: rgb(255,255,255,0.4);
+        }
+            
         .release-notes {
             font-size: 80%;
             padding-left: 16px;
@@ -78,7 +100,7 @@ export class RepositoryReleaseData extends LitElement {
             return html`<progress class="release-data-progress" />`
         }
 
-        const release_date = new Date(this.data.published_at)
+        const release_date = dateFormat(this.data.published_at)
         const release_notes = this.data.body.replace(/\(https:\/\/github\.com\/.*?\)/g, '').replace(/\r\n/g, '<br>')
 
         return html`
@@ -87,11 +109,11 @@ export class RepositoryReleaseData extends LitElement {
                     <tbody>
                         <tr>
                             <th>Version</th>
-                            <td class="release-version"><a href="https://github.com/scfmod/${this.name}/releases/latest" class="secondary">${this.data.name}</a></td>
+                            <td><a href="https://github.com/scfmod/${this.name}/releases/latest" class="secondary">${this.data.name}</a></td>
                         </tr>
                         <tr>
                             <th>Published</th>
-                            <td class="release-date">${release_date.toLocaleString()}</td>
+                            <td>${release_date}</td>
                         </tr>
                     </tbody>
                 </table>
