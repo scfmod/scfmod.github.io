@@ -2,6 +2,7 @@ import { html, css, LitElement } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/co
 import { unsafeHTML } from 'https://cdn.jsdelivr.net/npm/lit-html@3.3.1/directives/unsafe-html.min.js'
 
 import picoStylesheet from './../pico.min.css' with { type: 'css' }
+import { getReleaseData } from '../gh-api.js'
 
 export class RepositoryReleaseData extends LitElement {
 
@@ -62,11 +63,7 @@ export class RepositoryReleaseData extends LitElement {
 
     async fetchData() {
         try {
-            let res = await fetch(`https://api.github.com/repos/scfmod/${this.name}/releases/latest`)
-            if (!res.ok) {
-                throw new Error(`GitHub API error: ${response.status}`)
-            }
-            this.data = await res.json()
+            this.data = await getReleaseData(this.name)
         } catch (e) {
             this.error = e
         }
